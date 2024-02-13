@@ -6,9 +6,9 @@ import AppDashboard from './components/AppDashboard.vue';
 
 export default {
     components: {
-    AppHeader,
-    AppDashboard
-},
+        AppHeader,
+        AppDashboard
+    },
     data() {
         return {
             store
@@ -17,11 +17,11 @@ export default {
     methods: {
         getMovies() {
             store.loading = true;
-            
+
             axios
-                .get(`https://api.themoviedb.org/3/search/movie?api_key=8766d6b6b214fc613264d11608cc2b52&query=${store.searchMovie}`)
+                .get(`https://api.themoviedb.org/3/search/multi?api_key=8766d6b6b214fc613264d11608cc2b52&query=${store.searchMovie}`)
                 .then(res => {
-                    store.searchList = res.data.results
+                    store.searchResult = res.data.results
                     store.loading = false
                     console.log(res.data.results)
                 })
@@ -32,12 +32,11 @@ export default {
 
 
 <template>
-    <AppHeader @performSearch="getMovies"/>
+    <AppHeader @performSearch="getMovies" />
     <AppDashboard />
 </template>
 
 
 <style lang="scss">
 @use "./styles/general.scss" as *;
-
 </style>
