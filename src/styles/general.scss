@@ -3,6 +3,7 @@
 @use "./partials/flex" as *; //flex settings
 @use "./partials/columns" as *; //columns settings
 @use "./partials/fonts" as *; //fonts settings
+@use "./flags/lang-flags" as *; //flags images
 
 // brand colors
 $primary-color: #0080ff;
@@ -44,4 +45,8 @@ li {
 
 .w-100 {
     width: 100%;
+}
+
+.lang-icon {
+    background-image: url('../assets/flags/lang-flags.png');
 }
