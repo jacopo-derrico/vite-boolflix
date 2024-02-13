@@ -1,18 +1,39 @@
 <script>
-import AppComponent from './components/AppComponent.vue';
-
+import axios from 'axios';
 import { store } from "./store";
+import AppHeader from './components/AppHeader.vue';
+import AppDashboard from './components/AppDashboard.vue';
 
 export default {
     components: {
-        AppComponent
+    AppHeader,
+    AppDashboard
+},
+    data() {
+        return {
+            store
+        }
+    },
+    methods: {
+        getMovies() {
+            store.loading = true;
+            
+            axios
+                .get(`https://api.themoviedb.org/3/search/movie?api_key=8766d6b6b214fc613264d11608cc2b52&query=${store.searchMovie}`)
+                .then(res => {
+                    store.searchList = res.data.results
+                    store.loading = false
+                    console.log(res.data.results)
+                })
+        }
     },
 }
 </script>
 
 
 <template>
-<AppComponent/>
+    <AppHeader @performSearch="getMovies"/>
+    <AppDashboard />
 </template>
 
 
