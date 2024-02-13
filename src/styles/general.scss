@@ -1,0 +1,47 @@
+@use "./partials/variables" as *;
+@use "./partials/mixins" as *;
+@use "./partials/flex" as *; //flex settings
+@use "./partials/columns" as *; //columns settings
+@use "./partials/fonts" as *; //fonts settings
+
+// brand colors
+$primary-color: #0080ff;
+$secondary-color: #00ffd9;
+$accent-color: #00ff11;
+// col dimension
+$single-col: calc(100% / 12);
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+img {
+    width: 100%;
+    display: block;
+}
+
+body {
+    font-family: sans-serif;
+}
+
+a {
+    text-decoration: none;
+}
+
+li {
+    list-style: none;
+}
+
+.m-center {
+    margin: 0 auto;
+}
+
+.h-100 {
+    height: 100%;
+}
+
+.w-100 {
+    width: 100%;
+}

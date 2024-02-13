@@ -1,0 +1,53 @@
+// COLUMNS dimensions
+
+// col base
+$single-col: calc(100% / 12);
+
+
+.col-1 {
+    width: $single-col;
+}
+
+.col-2 {
+    width: calc($single-col * 2);
+}
+
+.col-3 {
+    width: calc($single-col * 3);
+}
+
+.col-4 {
+    width: calc($single-col * 4);
+}
+
+.col-5 {
+    width: calc($single-col * 5);
+}
+
+.col-6 {
+    width: calc($single-col * 6);
+}
+
+.col-7 {
+    width: calc($single-col * 7);
+}
+
+.col-8 {
+    width: calc($single-col * 8);
+}
+
+.col-9 {
+    width: calc($single-col * 9);
+}
+
+.col-10 {
+    width: calc($single-col * 10);
+}
+
+.col-11 {
+    width: calc($single-col * 11);
+}
+
+.col-12 {
+    width: calc($single-col * 12);
+}
