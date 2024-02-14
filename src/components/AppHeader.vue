@@ -22,7 +22,7 @@ export default {
                     <font-awesome-icon icon="fa-solid fa-magnifying-glass" />
                 </div>
                 <input type="text" id="searchFilm" placeholder="Binge something..." v-model="store.searchMovie"
-                    @input="$emit('performSearch')">
+                    @keyup.enter="$emit('performSearch')">
                 <!-- <button type="button" @click.prevent="$emit('performSearch')">Cerca</button> -->
             </div>
         </nav>
