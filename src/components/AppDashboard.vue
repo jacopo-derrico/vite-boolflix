@@ -19,7 +19,7 @@ export default {
     <div class="flex flex-wrap">
         <AppMovieCard v-for="(movie, index) in store.searchResult" :key="index" :propsTitle="movie.title || movie.name"
             :propsOgTitle="movie.original_title || movie.original_name" :propsLang="movie.original_language"
-            :propsScore="movie.vote_average" :propsImg="movie.poster_path" />
+            :propsScore="movie.vote_average" :propsImg="movie.poster_path" :propsScoreCount="movie.vote_count" />
     </div>
 </template>
 
