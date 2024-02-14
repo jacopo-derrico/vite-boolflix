@@ -1,8 +1,8 @@
 <template>
     <div class="flex-col">
-        <!-- <figure>
-            <img :src="propsImg" :alt="propsName">
-        </figure> -->
+        <figure>
+            <img :src="`https://image.tmdb.org/t/p/w342${propsImg}`" :alt="propsName">
+        </figure>
         <h4>{{ propsTitle }}</h4>
         <h6>{{ propsOgTitle }}</h6>
         <div>
@@ -20,7 +20,8 @@ export default {
         propsTitle: String,
         propsOgTitle: String,
         propsLang: String,
-        propsScore: Number
+        propsScore: Number,
+        propsImg: String
     },
     data() {
         return {
