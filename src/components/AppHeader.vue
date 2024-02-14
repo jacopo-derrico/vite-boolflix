@@ -22,8 +22,7 @@ export default {
                     <font-awesome-icon icon="fa-solid fa-magnifying-glass" />
                 </div>
                 <input type="text" id="searchFilm" placeholder="Binge something..." v-model="store.searchMovie"
-                    @keyup.enter="$emit('performSearch')">
-                <!-- <button type="button" @click.prevent="$emit('performSearch')">Cerca</button> -->
+                    @input="$emit('performSearch')">
             </div>
         </nav>
     </header>
@@ -34,7 +33,6 @@ export default {
 @use "../styles/general.scss" as *;
 
 header {
-    // background-color: #ffffff6d;
     padding-block: 10px;
 
     h1 {
