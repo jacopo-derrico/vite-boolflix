@@ -17,7 +17,7 @@ export default {
     methods: {
         getMovies() {
             store.loading = true;
-
+            store.searchResult = []
             if (store.searchMovie === '') {
                 axios
                     .get(`https://api.themoviedb.org/3/trending/all/day?api_key=8766d6b6b214fc613264d11608cc2b52&language=it-IT`)
