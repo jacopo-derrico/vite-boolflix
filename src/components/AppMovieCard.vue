@@ -74,10 +74,6 @@ export default {
         }
     }
 
-    .hidden {
-        display: none;
-    }
-
     #info {
         display: none;
     }
