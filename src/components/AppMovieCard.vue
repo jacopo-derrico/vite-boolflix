@@ -50,6 +50,7 @@ export default {
     flex-basis: calc((100% / 6) - 20px + (20px / 6));
     color: #fff;
     position: relative;
+    height: fit-content;
 
     figure {
         width: 100%;
@@ -81,10 +82,8 @@ export default {
     &:hover #info {
         display: flex;
         position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
+        width: 100%;
+        height: 100%;
 
         background-color: #00000080;
 
