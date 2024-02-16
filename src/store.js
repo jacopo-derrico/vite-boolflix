@@ -8,4 +8,6 @@ export const store = reactive({
     apiUrl: 'https://api.themoviedb.org/3/search/multi?api_key=8766d6b6b214fc613264d11608cc2b52&language=it_IT',
     teaserKey: '',
     showTrailer: false,
+    trailerInfo: {},
+    infoHover: false
 })
