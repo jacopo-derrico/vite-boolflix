@@ -13,12 +13,13 @@ export default {
         };
     },
     methods: {
-        getTrailer(id, type, title, overview) {
+        getTrailer(id, type, title, overview, genres) {
 
             store.trailerInfo = { title: title, overview: overview };
             console.log(store.trailerInfo);
             console.log(id, type);
             store.showTrailer = true;
+            store.singleMovieGenres = []
 
             if (type === undefined) {
                 type = 'tv'
@@ -46,6 +47,27 @@ export default {
                 .catch(error => {
                     console.error('Error fetching credits:', error);
                 });
+
+            if (type == 'movie') {
+                store.moviesGenres.forEach(element => {
+                    for (let i = 0; i < genres.length; i++) {
+                        const selectedMovie = genres[i];
+                        if (element.id == selectedMovie) {
+                            store.singleMovieGenres.push(element.name)
+                        }
+                    }
+                });
+            } else if (type == 'tv') {
+                store.tvGenres.forEach(element => {
+                    for (let i = 0; i < genres.length; i++) {
+                        const selectedMovie = genres[i];
+                        if (element.id == selectedMovie) {
+                            store.singleMovieGenres.push(element.name)
+                        }
+                    }
+                });
+            }
+            console.log(store.singleMovieGenres)
         },
         cleanTrailer() {
             store.showTrailer = false;
@@ -64,7 +86,7 @@ export default {
         <AppMovieCard v-for="(movie, index) in store.searchResult" :key="index" :propsTitle="movie.title || movie.name"
             :propsOgTitle="movie.original_title || movie.original_name" :propsLang="movie.original_language"
             :propsScore="movie.vote_average" :propsImg="movie.poster_path" :propsScoreCount="movie.vote_count"
-            @click="getTrailer(movie.id, movie.media_type, (movie.title || movie.name), movie.overview)" />
+            @click="getTrailer(movie.id, movie.media_type, (movie.title || movie.name), movie.overview, movie.genre_ids)" />
         <div class="focusCard" :class="store.showTrailer ? 'visible' : 'hidden'">
             <font-awesome-icon icon="fa-solid fa-xmark" @click="cleanTrailer" />
             <div class="info" @mouseover="mouseOverInfo" @mouseleave="mouseOverInfo">
@@ -76,8 +98,13 @@ export default {
                         <h2>{{ store.trailerInfo.title }}</h2>
                         <p>{{ store.trailerInfo.overview }}</p>
                         <p>Cast:
-                            <span v-for="(element, index) in store.castInfo" :key="index">{{ element?.name }}<span v-if="index < store.castInfo.length - 1">, </span>
+                            <span v-for="(element, index) in store.castInfo" :key="index">{{ element?.name }}<span
+                                    v-if="index < store.castInfo.length - 1">, </span>
                             </span>
+                        </p>
+                        <p>Generi:
+                            <span v-for="(element, index) in store.singleMovieGenres" :key="index">{{ element }}<span
+                                    v-if="index < store.singleMovieGenres.length - 1">, </span></span>
                         </p>
                     </div>
                 </div>

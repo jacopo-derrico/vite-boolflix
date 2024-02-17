@@ -20,7 +20,7 @@ export default {
             store.searchResult = []
             if (store.searchMovie === '') {
                 axios
-                    .get(`https://api.themoviedb.org/3/trending/all/day?api_key=8766d6b6b214fc613264d11608cc2b52&language=it-IT`)
+                    .get(`https://api.themoviedb.org/3/trending/all/day?api_key=8766d6b6b214fc613264d11608cc2b52`)
                     .then(res => {
                         store.searchResult = res.data.results
                         store.loading = false
@@ -35,11 +35,25 @@ export default {
                         console.log(res.data.results)
                     })
             }
-
+        },
+        getGenres() {
+            axios
+                .get(`https://api.themoviedb.org/3/genre/movie/list?api_key=8766d6b6b214fc613264d11608cc2b52`)
+                .then(res => {
+                    store.moviesGenres = res.data.genres
+                    console.log(res.data.genres)
+                });
+            axios
+                .get(`https://api.themoviedb.org/3/genre/tv/list?api_key=8766d6b6b214fc613264d11608cc2b52`)
+                .then(res => {
+                    store.tvGenres = res.data.genres
+                    console.log(res.data.genres)
+                });
         }
     },
     mounted() {
-        this.getMovies()
+        this.getMovies();
+        this.getGenres();
     },
 }
 </script>

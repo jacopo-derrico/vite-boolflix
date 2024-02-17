@@ -10,5 +10,8 @@ export const store = reactive({
     showTrailer: false,
     trailerInfo: {},
     infoHover: false,
-    castInfo: []
+    castInfo: [],
+    tvGenres: [],
+    moviesGenres: [],
+    singleMovieGenres: []
 })
