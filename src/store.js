@@ -9,5 +9,6 @@ export const store = reactive({
     teaserKey: '',
     showTrailer: false,
     trailerInfo: {},
-    infoHover: false
+    infoHover: false,
+    castInfo: []
 })

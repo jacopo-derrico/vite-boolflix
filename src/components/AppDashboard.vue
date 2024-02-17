@@ -37,16 +37,26 @@ export default {
                 .catch(error => {
                     console.error('Error fetching trailers:', error);
                 });
+
+            axios
+                .get(`https://api.themoviedb.org/3/${type}/${id}/credits?api_key=8766d6b6b214fc613264d11608cc2b52&language=it_IT"`)
+                .then(res => {
+                    store.castInfo = res.data.cast.slice(0, 5)
+                })
+                .catch(error => {
+                    console.error('Error fetching credits:', error);
+                });
         },
         cleanTrailer() {
             store.showTrailer = false;
             store.trailerInfo = {};
             store.teaserKey = '';
         },
-        mouseOverInfo(){
-            store.infoHover = !store.infoHover; 
-    },
-}}
+        mouseOverInfo() {
+            store.infoHover = !store.infoHover;
+        },
+    }
+}
 </script>
 
 <template>
@@ -57,9 +67,7 @@ export default {
             @click="getTrailer(movie.id, movie.media_type, (movie.title || movie.name), movie.overview)" />
         <div class="focusCard" :class="store.showTrailer ? 'visible' : 'hidden'">
             <font-awesome-icon icon="fa-solid fa-xmark" @click="cleanTrailer" />
-            <div class="info"
-                    @mouseover="mouseOverInfo"
-                    @mouseleave="mouseOverInfo">
+            <div class="info" @mouseover="mouseOverInfo" @mouseleave="mouseOverInfo">
                 <iframe type="text/html"
                     :src="`https://www.youtube.com/embed/${store.teaserKey}?autoplay=1&controls=0&disablekb=1&enablejsapi=1&fs=0&loop=1&modestbranding=1&iv_load_policy=3`"
                     frameborder="0"></iframe>
@@ -67,6 +75,10 @@ export default {
                     <div id="data" class="flex-column align-end">
                         <h2>{{ store.trailerInfo.title }}</h2>
                         <p>{{ store.trailerInfo.overview }}</p>
+                        <p>Cast:
+                            <span v-for="(element, index) in store.castInfo" :key="index">{{ element?.name }}<span v-if="index < store.castInfo.length - 1">, </span>
+                            </span>
+                        </p>
                     </div>
                 </div>
             </div>
@@ -123,14 +135,14 @@ export default {
         bottom: 0;
         left: 0;
         height: 30%;
-        background: linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(255,255,255,0) 100%);
+        background: linear-gradient(0deg, rgba(0, 0, 0, 1) 0%, rgba(255, 255, 255, 0) 100%);
     }
 
     #data {
         color: white;
         padding: 30px;
-        animation: fadeOut 3s ease-in-out;
-        animation-fill-mode: forwards; 
+        animation: fadeOut 6s ease-in-out;
+        animation-fill-mode: forwards;
         position: absolute;
         bottom: 0;
         width: 100%;
