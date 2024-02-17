@@ -13,5 +13,23 @@ export const store = reactive({
     castInfo: [],
     tvGenres: [],
     moviesGenres: [],
-    singleMovieGenres: []
+    singleMovieGenres: [],
+    currentList: 'all',
+    menuList: [
+        {
+            name: 'Home',
+            type: 'all',
+            status: true
+        },
+        {
+            name: 'Movies',
+            type: 'movie',
+            status: false
+        },
+        {
+            name: 'TV Series',
+            type: 'tv',
+            status: false
+        }
+    ]
 })

@@ -18,23 +18,30 @@ export default {
         getMovies() {
             store.loading = true;
             store.searchResult = []
-            if (store.searchMovie === '') {
+            
+            if (store.searchMovie == '') {
                 axios
-                    .get(`https://api.themoviedb.org/3/trending/all/day?api_key=8766d6b6b214fc613264d11608cc2b52`)
+                    .get(`https://api.themoviedb.org/3/trending/${store.currentList}/week?api_key=5ab2b0cfcfeb10eeaa0adb6b3787dbee&query=`)
                     .then(res => {
-                        store.searchResult = res.data.results
-                        store.loading = false
                         console.log(res.data.results)
+                        store.searchResult = res.data.results
+                    })
+            } else if (store.searchMovie !== '' && store.currentList == 'all') {
+                axios
+                    .get(`https://api.themoviedb.org/3/search/multi?api_key=5ab2b0cfcfeb10eeaa0adb6b3787dbee&query=${store.searchMovie}`)
+                    .then(res => {
+                        console.log(res.data.results)
+                        store.searchResult = res.data.results
                     })
             } else {
                 axios
-                    .get(`https://api.themoviedb.org/3/search/multi?api_key=8766d6b6b214fc613264d11608cc2b52&query=${store.searchMovie}`)
+                    .get(`https://api.themoviedb.org/3/search/${store.currentList}?api_key=5ab2b0cfcfeb10eeaa0adb6b3787dbee&query=${store.searchMovie}`)
                     .then(res => {
-                        store.searchResult = res.data.results
-                        store.loading = false
                         console.log(res.data.results)
+                        store.searchResult = res.data.results
                     })
             }
+
         },
         getGenres() {
             axios
@@ -60,7 +67,7 @@ export default {
 
 
 <template>
-    <AppHeader @performSearch="getMovies" />
+    <AppHeader @performSearch="getMovies" @changeList="getMovies" />
     <AppDashboard />
 </template>
 

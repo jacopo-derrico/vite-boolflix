@@ -26,6 +26,13 @@ export default {
             </div>
         </nav>
     </header>
+    <nav class="flex justify-center">
+        <ul class="flex justify-between">
+            <li v-for="(element, index) in store.menuList" :key="index"
+                :class="(store.currentList == element.type) ? 'active' : ''"
+                @click="(store.currentList = element.type), $emit('changeList')">{{ element.name }}</li>
+        </ul>
+    </nav>
 </template>
 
 
@@ -33,6 +40,7 @@ export default {
 @use "../styles/general.scss" as *;
 
 header {
+    margin-top: 30px;
     padding-block: 10px;
 
     h1 {
@@ -43,6 +51,30 @@ header {
         width: 70%;
     }
 }
+
+nav {
+    color: #ffffff44;
+    margin-left: 30px;
+    margin-block: 20px;
+}
+
+ul {
+    gap: 40px;
+}
+
+li {
+    cursor: pointer;
+    text-transform: uppercase;
+
+    &:hover {
+        color: white;
+    }
+}
+
+.active {
+    color: white;
+}
+
 
 .icon {
     padding-right: 15px;
@@ -70,10 +102,4 @@ input {
         outline: none;
     }
 }
-
-// .icon:active input {
-//     // outline: none;
-//     width: 100%;
-//     color: red;
-// }
 </style>
